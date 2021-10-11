@@ -11,7 +11,7 @@ const Nav = styled.nav`
   color: ${(props) => props.theme.textColor};
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,19 +20,32 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 const HeadingOne = styled.h1`
-  font-weight: 600;
+  font-weight: 800;
 `;
 const IconGp = styled.div`
   height: 50%;
   display: flex;
   align-items: center;
   font-weight: 600;
-  &:hover .modeIcon {
-    box-shadow: 0 1px 2px 0 ${(props) => props.theme.textColor};
-    border-radius: 50%;
-  }
+  font-size: 14px;
 `;
 
+const Icon = styled.img`
+  display: inline-block;
+  height: 18px;
+  margin-right: 5px;
+  vertical-align: middle;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  &:hover {
+    box-shadow: 0 1px 2px 0 ${(props) => props.theme.textColor};
+  }
+`;
 const NavBar = (props) => {
   const icon = props.theme === "light" ? "moon" : "sun";
   return (
@@ -40,10 +53,9 @@ const NavBar = (props) => {
       <Container>
         <HeadingOne>Where in the world?</HeadingOne>
         <IconGp>
-          <img
-            src={`./images/${icon}.png`}
+          <Icon
+            src={`/images/${icon}.png`}
             alt="theme"
-            className="modeIcon"
             onClick={() =>
               props.theme === "light"
                 ? props.changeTheme("dark")

@@ -3,11 +3,13 @@
   padding: 0;
   font-family: "Nunito Sans", sans-serif;
 }
-.modeIcon {
-  display: inline-block;
-  height: 18px;
-  margin-right: 5px;
-  vertical-align: middle;
-  padding: 7px;
-  cursor: pointer;
+/* Hide scrollbar for Chrome, Safari and Opera */
+.card-description::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.card-description {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

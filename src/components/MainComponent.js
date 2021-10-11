@@ -6,18 +6,25 @@ import { ThemeProvider } from "styled-components";
 import AllCountries from "./AllCountriesComponent";
 import CountryDetail from "./CountryDetailComponent";
 import NavBar from "./NavBarComponent";
+import SearchandFilter from "./SearchandFilterComponent";
 
 // Router
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
 // Redux
 import { connect } from "react-redux";
-import { fetchCountries, changeTheme } from "../redux/actions/ActionCreators";
+import {
+  fetchCountries,
+  changeTheme,
+  fetchWithRegion,
+  searchByName,
+} from "../redux/actions/ActionCreators";
 
 const mapStateToProps = (state) => {
   return {
     countries: state.countries,
     theme: state.theme,
+    filter: state.filter,
   };
 };
 
@@ -25,6 +32,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchCountries: () => dispatch(fetchCountries()),
     changeTheme: (theme) => dispatch(changeTheme(theme)),
+    fetchWithRegion: (region) => dispatch(fetchWithRegion(region)),
+    searchByName: (name) => dispatch(searchByName(name)),
   };
 };
 
@@ -54,27 +63,43 @@ class Main extends React.Component {
   }
 
   render() {
-    const CountryWithID = ({ match, location, history }) => {
+    const CountryWithName = ({ match, location, history }) => {
       return (
         <CountryDetail
-          data={
-            this.props.countries.filter(
-              (country) => country.id === match.params.id
+          theme={this.props.theme.current}
+          country={
+            this.props.countries.countries.filter(
+              (country) => country.name.common === match.params.name
             )[0]
           }
+          name={match.params.name}
         />
       );
     };
     return (
       <ThemeProvider theme={themes[this.props.theme.current]}>
-        <NavBar theme={this.props.theme.current} changeTheme={this.props.changeTheme} />
+        <NavBar
+          theme={this.props.theme.current}
+          changeTheme={this.props.changeTheme}
+        />
+        <SearchandFilter
+          theme={this.props.theme.current}
+          filter={this.props.filter.current}
+          fetchWithRegion={this.props.fetchWithRegion}
+          searchByName={this.props.searchByName}
+        />
         <Switch>
           <Route
-            path="/home"
+            path="/"
             exact
-            component={() => <AllCountries countries={this.props.countries} />}
+            component={() => (
+              <AllCountries
+                theme={this.props.theme.current}
+                countries={this.props.countries}
+              />
+            )}
           />
-          <Route path="/countries/:id" exact component={CountryWithID} />
+          <Route path="/countries/:name" exact component={CountryWithName} />
           <Redirect to="/" />
         </Switch>
       </ThemeProvider>
