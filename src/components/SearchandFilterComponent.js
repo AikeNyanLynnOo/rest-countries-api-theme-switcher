@@ -36,8 +36,8 @@ const SearchBar = styled.div`
   }
   @media (min-width: 400px) and (max-width: 500px) {
     width: 100px;
-    flex : 1;
-    margin-right : 10px;
+    flex: 1;
+    margin-right: 10px;
   }
   @media (max-width: 300px) {
     padding: 0;
@@ -93,7 +93,7 @@ const Filter = styled.div`
 const SelectField = styled.p`
   flex: 1;
   font-size: 14px;
-  margin-right : 5px;
+  margin-right: 5px;
 `;
 
 const SelectIcon = styled.img`
@@ -130,7 +130,7 @@ const SearchandFilter = (props) => {
     setInput(e.target.value);
   };
 
-  const { innerWidth: width, innerHeight: height } = window;
+  const width = window.innerWidth;
   return (
     <Bar>
       <Container>
