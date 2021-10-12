@@ -1,6 +1,17 @@
 import styled from "styled-components";
-import { Container } from "./NavBarComponent";
 import { useState } from "react";
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
+  @media (max-width: 400px) {
+    display: block;
+  }
+`;
 
 const SearchBar = styled.div`
   border-radius: 4px;
@@ -13,17 +24,32 @@ const SearchBar = styled.div`
   display: flex;
   align-items: center;
   padding: 0 20px;
+  box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
   color: ${(props) => props.theme.textColor};
   background-color: ${(props) => props.theme.element};
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  @media (max-width: 400px) {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  @media (min-width: 400px) and (max-width: 500px) {
+    width: 100px;
+    flex : 1;
+    margin-right : 10px;
+  }
+  @media (max-width: 300px) {
+    padding: 0;
+  }
 `;
 
 const SearchInput = styled.input`
   border: none;
   flex: 1;
   font-size: 14px;
+  width: 100%;
+  text-overflow: ellipsis;
   color: ${(props) => props.theme.textColor};
   background-color: ${(props) => props.theme.element};
   &:focus {
@@ -41,21 +67,33 @@ const SearchIcon = styled.img`
 
 const Filter = styled.div`
   height: 45px;
-  width: 130px;
+  width: 150px;
   border-radius: 4px;
   padding: 0 16px;
   display: flex;
   align-items: center;
   cursor: pointer;
   position: relative;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
   color: ${(props) => props.theme.textColor};
   background-color: ${(props) => props.theme.element};
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  @media (max-width: 400px) {
+    width: 100%;
+  }
+  @media (min-width: 400px) and (max-width: 500px) {
+    width: 100px;
+  }
+  @media (max-width: 300px) {
+    padding: 0 6px;
+  }
 `;
 
 const SelectField = styled.p`
   flex: 1;
   font-size: 14px;
+  margin-right : 5px;
 `;
 
 const SelectIcon = styled.img`
@@ -92,25 +130,34 @@ const SearchandFilter = (props) => {
     setInput(e.target.value);
   };
 
+  const { innerWidth: width, innerHeight: height } = window;
   return (
     <Bar>
       <Container>
         <SearchBar>
           <SearchIcon
-            src={`/images/search_${props.theme}.png`}
+            src={`./images/search_${props.theme}.png`}
             alt="search-icon"
-            onClick={props.handleSearch}
+            onClick={() => props.searchByName(input)}
           />
           <SearchInput
-            placeholder="Search for a country..."
+            placeholder={
+              width < 220
+                ? width < 200
+                  ? `Search`
+                  : `Search country`
+                : `Search for a country...`
+            }
             onChange={handleChange}
             onKeyDown={(e) => e.key === "Enter" && props.searchByName(input)}
           />
         </SearchBar>
         <Filter onClick={() => setShowList(!showList)}>
-          <SelectField>{props.filter || "Filter by Region"}</SelectField>
+          <SelectField>
+            {props.filter || (width < 200 ? "Filter" : "Filter by Region")}
+          </SelectField>
           <SelectIcon
-            src={`/images/down_${props.theme}.png`}
+            src={`./images/down_${props.theme}.png`}
             alt="chevron-icon"
           />
           {showList && (

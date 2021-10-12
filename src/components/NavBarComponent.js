@@ -11,7 +11,7 @@ const Nav = styled.nav`
   color: ${(props) => props.theme.textColor};
 `;
 
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,6 +21,14 @@ export const Container = styled.div`
 `;
 const HeadingOne = styled.h1`
   font-weight: 800;
+  @media (max-width: 580px) {
+    font-weight: 600;
+    font-size: 20px;
+  }
+  @media (max-width: 200px) {
+    font-weight: 600;
+    font-size: 14px;
+  }
 `;
 const IconGp = styled.div`
   height: 50%;
@@ -54,7 +62,7 @@ const NavBar = (props) => {
         <HeadingOne>Where in the world?</HeadingOne>
         <IconGp>
           <Icon
-            src={`/images/${icon}.png`}
+            src={`./images/${icon}.png`}
             alt="theme"
             onClick={() =>
               props.theme === "light"

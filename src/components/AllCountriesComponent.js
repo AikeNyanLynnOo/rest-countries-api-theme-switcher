@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import { Link } from "react-router-dom";
-
 // components
 
 const Wrapper = styled.section`
@@ -22,6 +21,17 @@ const CardGrid = styled.section`
   grid-gap: 50px;
   background-color: ${(props) => props.theme.pageBackground};
   color: ${(props) => props.theme.textColor};
+  @media (min-width: 700px) and (max-width: 1000px) {
+    grid-gap: 20px 10px;
+  }
+  @media (max-width: 700px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-gap: 20px 10px;
+  }
+  @media (max-width: 375px) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-gap: 30px 10px;
+  }
 `;
 
 const Card = styled.div`
@@ -32,14 +42,14 @@ const Card = styled.div`
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-  height: 300px;
+  height: 320px;
   background-color: ${(props) => props.theme.element};
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 `;
 const FlagImg = styled.img`
   display: block;
   width: 100%;
-  height: 140px;
+  height: 160px;
   margin-bottom: 10px;
   border-top-left-radius: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -53,7 +63,7 @@ const FlagImg = styled.img`
   -o-border-top-right-radius: 5px;
 `;
 const Description = styled.div`
-  height: 130px;
+  height: 140px;
   overflow-y: scroll;
 `;
 const Title = styled.h2`

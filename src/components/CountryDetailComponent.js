@@ -14,7 +14,7 @@ const Wrapper = styled.section`
 const BtnContainer = styled.div`
   width: 90%;
   margin: 0 auto;
-  padding-top: 35px;
+  padding-top: 0;
 `;
 
 const BackBtn = styled.button`
@@ -45,30 +45,55 @@ const Icon = styled.img`
 
 const Flex = styled.div`
   width: 90%;
-  height: 300px;
+  height: auto;
   margin: 35px auto;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 450px) {
+    display: block;
+  }
 `;
 
 const Flag = styled.img`
   width: 40%;
   height: 100%;
+  @media (max-width: 450px) {
+    width: 100%;
+  }
 `;
 
 const Description = styled.div`
   width: 55%;
   heigth: 100%;
+  @media (max-width: 450px) {
+    width: 100%;
+    margin-top: 20px;
+  }
 `;
 
 const Title = styled.h2`
   font-weight: 800;
-  margin: 10px 20px;
+  margin: 0 20px 10px 0;
 `;
 
 const DescriptionFlex = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 450px) {
+    & ul {
+      margin: 20px 0;
+    }
+    display: block;
+  }
+`;
+
+const TagContainer = styled.div`
+  margin: 10px 7px;
+  display: flex;
+  flex-wrap: wrap;
+  @media (max-width: 1000px) {
+    margin-left: 0;
+  }
 `;
 
 const Tag = styled.span`
@@ -88,6 +113,10 @@ const DescriptionFooter = styled.div`
   flex-wrap: wrap;
   margin: 10px 20px;
   align-items: center;
+  @media (max-width: 450px) {
+    margin: 10px 0;
+    display: block;
+  }
 `;
 
 const CountryDetail = ({ country, theme }) => {
@@ -106,7 +135,7 @@ const CountryDetail = ({ country, theme }) => {
             }}
           >
             <BackBtn>
-              <Icon src={`/images/back_${theme}.png`} />
+              <Icon src={`./images/back_${theme}.png`} />
               Back
             </BackBtn>
           </Link>
@@ -161,7 +190,7 @@ const CountryDetail = ({ country, theme }) => {
                   <ListItemProperty>Languages : </ListItemProperty>
                   {Object.keys(country.languages).map((key, idx) => {
                     if (idx === Object.keys(country.languages).length - 1) {
-                      return <span>{country.languages[key]} </span>;
+                      return <span key={idx}>{country.languages[key]} </span>;
                     }
                     return <span>{country.languages[key]}, </span>;
                   })}
@@ -169,14 +198,14 @@ const CountryDetail = ({ country, theme }) => {
               </List>
             </DescriptionFlex>
             <DescriptionFooter>
-              <ListItemProperty style={{ marginRight: 7 + "px" }}>
-                Border Countries :{" "}
-              </ListItemProperty>
-              {(country.borders &&
-                country.borders.map((border) => {
-                  return <Tag>{border}</Tag>;
-                })) ||
-                " No border countries"}
+              <ListItemProperty>Border Countries : </ListItemProperty>
+              <TagContainer>
+                {(country.borders &&
+                  country.borders.map((border, idx) => {
+                    return <Tag key={idx}>{border}</Tag>;
+                  })) ||
+                  " No border countries"}
+              </TagContainer>
             </DescriptionFooter>
           </Description>
         </Flex>
