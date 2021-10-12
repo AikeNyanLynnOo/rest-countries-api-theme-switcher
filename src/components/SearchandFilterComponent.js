@@ -136,7 +136,7 @@ const SearchandFilter = (props) => {
       <Container>
         <SearchBar>
           <SearchIcon
-            src={`./images/search_${props.theme}.png`}
+            src={`/images/search_${props.theme}.png`}
             alt="search-icon"
             onClick={() => props.searchByName(input)}
           />
@@ -157,7 +157,7 @@ const SearchandFilter = (props) => {
             {props.filter || (width < 200 ? "Filter" : "Filter by Region")}
           </SelectField>
           <SelectIcon
-            src={`./images/down_${props.theme}.png`}
+            src={`/images/down_${props.theme}.png`}
             alt="chevron-icon"
           />
           {showList && (

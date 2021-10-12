@@ -62,7 +62,7 @@ const NavBar = (props) => {
         <HeadingOne>Where in the world?</HeadingOne>
         <IconGp>
           <Icon
-            src={`./images/${icon}.png`}
+            src={`/images/${icon}.png`}
             alt="theme"
             onClick={() =>
               props.theme === "light"

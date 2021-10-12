@@ -79,10 +79,10 @@ const Title = styled.h2`
 const DescriptionFlex = styled.div`
   display: flex;
   justify-content: space-between;
+  & ul {
+    margin: 20px 0;
+  }
   @media (max-width: 450px) {
-    & ul {
-      margin: 20px 0;
-    }
     display: block;
   }
 `;
@@ -111,10 +111,10 @@ const Tag = styled.span`
 const DescriptionFooter = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 10px 20px;
+  // margin: 10px 20px;
+  margin: 10px 0;
   align-items: center;
   @media (max-width: 450px) {
-    margin: 10px 0;
     display: block;
   }
 `;
@@ -135,7 +135,7 @@ const CountryDetail = ({ country, theme }) => {
             }}
           >
             <BackBtn>
-              <Icon src={`./images/back_${theme}.png`} />
+              <Icon src={`/images/back_${theme}.png`} />
               Back
             </BackBtn>
           </Link>
@@ -192,7 +192,7 @@ const CountryDetail = ({ country, theme }) => {
                     if (idx === Object.keys(country.languages).length - 1) {
                       return <span key={idx}>{country.languages[key]} </span>;
                     }
-                    return <span>{country.languages[key]}, </span>;
+                    return <span key={idx}>{country.languages[key]}, </span>;
                   })}
                 </li>
               </List>
