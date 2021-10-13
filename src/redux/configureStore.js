@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 
 import { Countries } from "./reducers/countries";
 import { Theme } from "./reducers/theme";
@@ -13,7 +13,7 @@ const ConfigureStore = () => {
       theme: Theme,
       filter: Filter,
     }),
-    applyMiddleware(thunk, logger)
+    applyMiddleware(thunk)
   );
   return store;
 };

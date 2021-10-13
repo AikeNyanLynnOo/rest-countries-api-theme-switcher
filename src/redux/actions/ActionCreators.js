@@ -1,6 +1,5 @@
 import * as Types from "./ActionTypes";
 import { baseUrl } from "../../shared/baseUrl";
-import { COUNTRIES } from "../../shared/data";
 import axios from "axios";
 
 // Search
@@ -47,10 +46,6 @@ export const fetchCountries = () => (dispatch) => {
     .catch((err) => {
       dispatch(countriesFailed(err.message));
     });
-  // console.log("fetching");
-  // setTimeout(() => {
-  //   dispatch(countriesSuccess(COUNTRIES));
-  // }, 5000);
 };
 export const fetchWithRegion = (region) => (dispatch) => {
   dispatch(countriesLoading());
