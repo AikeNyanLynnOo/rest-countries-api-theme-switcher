@@ -9,7 +9,7 @@ import NavBar from "./NavBarComponent";
 import SearchandFilter from "./SearchandFilterComponent";
 
 // Router
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 
 // Redux
 import { connect } from "react-redux";
@@ -63,16 +63,17 @@ class Main extends React.Component {
   }
 
   render() {
-    const CountryWithName = ({ match, location, history }) => {
+    const CountryWithName = () => {
+      const {name} = useParams();
       return (
         <CountryDetail
           theme={this.props.theme.current}
           country={
             this.props.countries.countries.filter(
-              (country) => country.name.common === match.params.name
+              (country) => country.name.common === name
             )[0]
           }
-          name={match.params.name}
+          name={name}
         />
       );
     };
