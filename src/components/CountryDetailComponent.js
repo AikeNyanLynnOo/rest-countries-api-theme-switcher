@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 // components
 import { List, ListItemProperty } from "./AllCountriesComponent";
@@ -121,7 +121,7 @@ const DescriptionFooter = styled.div`
 
 const CountryDetail = ({ country, theme }) => {
   if (!country) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   } else {
     return (
       <Wrapper>

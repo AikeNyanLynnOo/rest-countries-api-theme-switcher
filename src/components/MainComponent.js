@@ -9,7 +9,7 @@ import NavBar from "./NavBarComponent";
 import SearchandFilter from "./SearchandFilterComponent";
 
 // Router
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 // Redux
 import { connect } from "react-redux";
@@ -88,22 +88,21 @@ class Main extends React.Component {
           fetchWithRegion={this.props.fetchWithRegion}
           searchByName={this.props.searchByName}
         />
-        <Switch>
+        <Routes>
           <Route
             path="/"
             exact
-            component={() => (
+            element={
               <AllCountries
                 theme={this.props.theme.current}
                 countries={this.props.countries}
               />
-            )}
+            }
           />
-          <Route path="/countries/:name" exact component={CountryWithName} />
-          <Redirect to="/" />
-        </Switch>
+          <Route path="/countries/:name" exact element={<CountryWithName />} />
+        </Routes>
       </ThemeProvider>
     );
   }
 }
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
