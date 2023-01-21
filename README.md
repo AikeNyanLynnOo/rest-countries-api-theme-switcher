@@ -11,6 +11,14 @@
  - [Styled Components](https://styled-components.com/)
 
 
+### Features
+
+- Light/dark theme toggle
+- Search with country name (full name or part of name) 
+- Filter with continents
+- Responsive design
+
+
 ### Run Locally
 
 Clone the project
@@ -43,9 +51,3 @@ Start the server
 [Demo](https://main--rest-countries-browser-a1k3.netlify.app/)
 
 
-### Features
-
-- Light/dark theme toggle
-- Search with country name (full name or part of name) 
-- Filter with continents
-- Responsive design
